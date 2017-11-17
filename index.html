@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Harcarus Recipe Search</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css">
+</head>
+
+<body>
+  <section class="section" id="app">
+    <div class="container">
+      <div class="columns is-mobile">
+        <div class="column is-three-fifths is-offset-one-fifth">
+          <div class="field">
+            <label class="label">Search Recipe</label>
+            <div class="control">
+              <input class="input" v-model="search" type="text" placeholder="e.g. chicken">
+            </div>
+            <p class="help">{{help}}</p>
+          </div>
+
+
+          <div class="column is-three-fifths is-offset-one-fifth">
+            <div class="card" style="margin-bottom: 1rem;" v-for="hits in recipes">
+              <header class="card-header">
+                <p class="card-header-title">
+                  {{hits.recipe.label}}
+                </p>
+              </header>
+              <div class="card-content">
+                <div class="content">
+                  <h5>Health</h5>
+                  <span v-for="label in hits.recipe.healthLabels">{{label}}<br/></span>
+                </div>
+              </div>
+              <footer class="card-footer">
+                <a v-bind:href="hits.recipe.shareAs" class="card-footer-item">View Recipe</a>
+              </footer>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
